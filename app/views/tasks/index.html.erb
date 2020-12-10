@@ -20,8 +20,10 @@
         <td><%= task.name %></td>
         <td><%= task.description %></td>
         <td><%= task.date.strftime('%B %d %Y') %></td>
-        <td><%= link_to 'Edit',  url_for([task.category, task]) %></td>
-        <td><%= link_to 'Delete', [task.category, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if current_user && current_user.admin %>
+          <td><%= link_to 'Edit',  url_for([task.category, task]) %></td>
+          <td><%= link_to 'Delete', [task.category, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
