@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tasks</h1>
+
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" >ID</th>
+      <th scope="col" >Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Date</th>
+      <th colspan="2" scope="col">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @category.tasks.each do |task| %>
+      <tr>
+        <td><%= task.category_id %></td>
+        <td><%= task.name %></td>
+        <td><%= task.description %></td>
+        <td><%= task.date.strftime('%B %d %Y') %></td>
+        <td><%= link_to 'Edit',  url_for([task.category, task]) %></td>
+        <td><%= link_to 'Delete', [task.category, task], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<button class="btn btn primary"><%= link_to 'New task', new_category_task_path %></button> |
+<button class="btn btn primary"><%= link_to 'Back to Categories', categories_path %></button>
